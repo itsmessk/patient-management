@@ -1,0 +1,12 @@
+### POST a new patient
+POST http://localhost:4000/patients
+Content-Type: application/json
+
+{
+    "name": "sk",
+    "email": "sundar@gmail.com",
+    "address": "123 main street",
+    "dateOfBirth": "1995-09-09",
+    "registeredDate": "1995-09-09"
+}
+###
