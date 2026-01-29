@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException e){
         Map<String, String> errors = new HashMap<>();
         log.warn("Email address already exists {}", e.getMessage());
-        errors.put("message", "Email already exists");
+        errors.put("message", "Email address already exists");
         return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException e){
+        Map<String, String> errors = new HashMap<>();
+        log.warn("Patient not found {}", e.getMessage());
+        errors.put("message", e.getMessage());
+        return ResponseEntity.ok().body(errors);
     }
 }
