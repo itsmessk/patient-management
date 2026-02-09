@@ -1,5 +1,5 @@
 ### DELETE request to example server
-DELETE http://localhost:4000/patients/123e4567-e89b-12d3-a456-426614174000
-
+DELETE http://localhost:4004/api/patients/4285fadd-ba39-41db-8021-4c1eafe509a4
+Authorization: Bearer {{token}}
 
 ###

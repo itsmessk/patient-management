@@ -1,10 +1,11 @@
 ### POST a new patient
 POST http://localhost:4004/api/patients
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "sk this is a kafka test",
-    "email": "thisisatestingmail12@gmail.com",
+    "email": "thisisatestingmail142@gmail.com",
     "address": "123 main street",
     "dateOfBirth": "1995-09-09",
     "registeredDate": "1995-09-09"
