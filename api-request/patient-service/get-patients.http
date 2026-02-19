@@ -1,4 +1,4 @@
 ### GET request to get all patients
-GET http://localhost:4004/api/patients?page=1&size=3&sort=desc&searchValue=John
+GET http://localhost:4004/api/patients?page=1&size=3&sort=desc&sortField=address
 Authorization: Bearer {{token}}
 ###
