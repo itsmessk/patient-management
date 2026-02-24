@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  patient-service:
+    image: patient-service:latest
+    container_name: patient-service
+    ports:
+      - "4000:4000"
+    environment:
+      BILLING_SERVER_GRPC_PORT: 9001
+      BILLING_SERVICE_ADDRESS: billing-service
+      SPRING_CACHE_TYPE: redis
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:postgresql://patient-service-db:5432/db
+      SPRING_DATASOURCE_USERNAME: admin_user
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_SQL_INIT_MODE: always
+    networks:
+      - internal
+
+networks:
+  internal:
+    external: true

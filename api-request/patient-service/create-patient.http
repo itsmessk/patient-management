@@ -5,7 +5,7 @@ Authorization: Bearer {{token}}
 
 {
     "name": "sk this is a kafka test",
-    "email": "this1kl0@gmail.com",
+    "email": "this1kl0h@gmail.com",
     "address": "123 main street",
     "dateOfBirth": "1995-09-09",
     "registeredDate": "1995-09-09"
