@@ -2,20 +2,33 @@ server:
   port: 4004
 
 spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
   cloud:
     gateway:
       server:
         webflux:
+
+          default-filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.burstCapacity: 5
+                redis-rate-limiter.replenishRate: 5
+                key-resolver: "#{@ipKeyResolver}"
+
+
           routes:
             - id: auth-service-route
-              uri: http://host.docker.internal:4005
+              uri: http://auth-service.patient-management.local:4005
               predicates:
                 - Path=/auth/**
               filters:
                 - StripPrefix=1
 
             - id: patient-service-route
-              uri: http://host.docker.internal:4000
+              uri: http://patient-service.patient-management.local:4000
               predicates:
                 - Path=/api/patients/**
               filters:
@@ -23,14 +36,14 @@ spring:
                 - JwtValidation
 
             - id: api-docs-patient-service
-              uri: http://host.docker.internal:4000
+              uri: http://patient-service.patient-management.local:4000
               predicates:
                 - Path=/api-docs/patients
               filters:
                 - RewritePath=/api-docs/patients, /v3/api-docs
 
             - id: api-docs-suth-service
-              uri: http://host.docker.internal:4005
+              uri: http://auth-service.patient-management.local:4005
               predicates:
                 - Path=/api-docs/auth
               filters:

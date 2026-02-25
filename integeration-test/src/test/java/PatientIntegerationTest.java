@@ -26,6 +26,7 @@ public class PatientIntegerationTest {
                 .body("patients", notNullValue());
     }
 
+    //RATE LIMIT TESTING
     @Test
     public void shouldReturn429AfterLimitExceeded() throws InterruptedException {
         String token = getToken();
