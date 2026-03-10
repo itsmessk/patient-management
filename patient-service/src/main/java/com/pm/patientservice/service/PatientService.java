@@ -113,7 +113,7 @@ public class PatientService {
         Patient savePatient = patientRepository.save(patient);
 
         billingServiceGrpcClient.createBillingAccount(patient.getId().toString(), patient.getName(), patient.getEmail());
-        kafkaProducer.sendEvent(patient);
+        kafkaProducer.sendPatientCreatedEvent(patient);
         return PatientMapper.toDTO(savePatient);
     }
 
@@ -133,6 +133,7 @@ public class PatientService {
         patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
 
         Patient updatedPatient = patientRepository.save(patient);
+        kafkaProducer.sendPatientUpdatedvent(updatedPatient);
 
         return PatientMapper.toDTO(updatedPatient);
     }

@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  appointment-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appointment-service
+    ports:
+      - "4006:4006"
+    image: "appointment-service:latest"
+    networks:
+      - internal
+
+networks:
+  internal:
+    external: true
