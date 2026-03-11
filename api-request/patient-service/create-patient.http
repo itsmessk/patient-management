@@ -4,8 +4,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "sk this is a kafka test",
-    "email": "this1kl0h@gmail.com",
+    "name": "sk new patient",
+    "email": "soopemama@mail.com",
     "address": "123 main street",
     "dateOfBirth": "1995-09-09",
     "registeredDate": "1995-09-09"
